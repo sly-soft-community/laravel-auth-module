@@ -1,0 +1,22 @@
+{
+    "name": "sly-soft-community/laravel-auth-module",
+    "description": "",
+    "authors": [
+        {
+            "name": "Egor Cherepovich",
+            "email": "slymuzzle@gmail.com"
+        }
+    ],
+    "extra": {
+        "laravel": {
+            "providers": [],
+            "aliases": {
+            }
+        }
+    },
+    "autoload": {
+        "psr-4": {
+            "Modules\\Auth\\": ""
+        }
+    }
+}
