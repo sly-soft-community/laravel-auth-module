@@ -1,6 +1,7 @@
 {
     "name": "sly-soft-community/laravel-auth-module",
-    "description": "",
+    "type": "laravel-module",
+    "description": "Laravel auth module",
     "authors": [
         {
             "name": "Egor Cherepovich",
