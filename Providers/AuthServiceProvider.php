@@ -4,6 +4,7 @@ namespace Modules\Auth\Providers;
 
 use Illuminate\Auth\Notifications\ResetPassword;
 use Illuminate\Foundation\Support\Providers\AuthServiceProvider as ServiceProvider;
+use Illuminate\Routing\Router;
 
 class AuthServiceProvider extends ServiceProvider
 {
@@ -18,12 +19,14 @@ class AuthServiceProvider extends ServiceProvider
     protected $moduleNameLower = 'auth';
 
     /**
-     * The policy mappings for the application.
+     * The application's route middleware groups.
      *
-     * @var array
+     * @var array<string, array<int, class-string|string>>
      */
-    protected $policies = [
-        // 'App\Models\Model' => 'App\Policies\ModelPolicy',
+    protected $middlewareGroups = [
+        'api' => [
+            \Laravel\Sanctum\Http\Middleware\EnsureFrontendRequestsAreStateful::class,
+        ],
     ];
 
     /**
@@ -33,8 +36,8 @@ class AuthServiceProvider extends ServiceProvider
      */
     public function boot()
     {
+        $this->registerMiddlewareGroups($this->app['router']);
         $this->registerConfig();
-        $this->registerPolicies();
 
         ResetPassword::createUrlUsing(function ($notifiable, $token) {
             return config('app.frontend_url')."/password-reset/$token?email={$notifiable->getEmailForPasswordReset()}";
@@ -64,5 +67,20 @@ class AuthServiceProvider extends ServiceProvider
         $this->mergeConfigFrom(
             module_path($this->moduleName, 'Config/sanctum.php'), 'sanctum'
         );
+    }
+
+    /**
+     * Register the middlewares.
+     *
+     * @param  Router $router
+     * @return void
+     */
+    public function registerMiddlewareGroups(Router $router)
+    {
+        foreach ($this->middlewareGroups as $group => $middlewares) {
+            foreach ($middlewares as $middleware) {
+                $router->pushMiddlewareToGroup($group, $middleware);
+            }
+        }
     }
 }
