@@ -1,11 +1,11 @@
 <?php
 
-use Modules\Auth\Http\Controllers\Auth\AuthenticatedSessionController;
-use Modules\Auth\Http\Controllers\Auth\EmailVerificationNotificationController;
-use Modules\Auth\Http\Controllers\Auth\NewPasswordController;
-use Modules\Auth\Http\Controllers\Auth\PasswordResetLinkController;
-use Modules\Auth\Http\Controllers\Auth\RegisteredUserController;
-use Modules\Auth\Http\Controllers\Auth\VerifyEmailController;
+use Modules\Auth\Http\Controllers\AuthenticatedSessionController;
+use Modules\Auth\Http\Controllers\EmailVerificationNotificationController;
+use Modules\Auth\Http\Controllers\NewPasswordController;
+use Modules\Auth\Http\Controllers\PasswordResetLinkController;
+use Modules\Auth\Http\Controllers\RegisteredUserController;
+use Modules\Auth\Http\Controllers\VerifyEmailController;
 use Illuminate\Support\Facades\Route;
 
 Route::post('/register', [RegisteredUserController::class, 'store'])
