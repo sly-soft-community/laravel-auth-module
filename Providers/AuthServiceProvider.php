@@ -59,10 +59,10 @@ class AuthServiceProvider extends ServiceProvider
     protected function registerConfig()
     {
         $this->mergeConfigFrom(
-            module_path($this->moduleName, 'Config/cors.php'), $this->moduleNameLower
+            module_path($this->moduleName, 'Config/cors.php'), 'cors'
         );
         $this->mergeConfigFrom(
-            module_path($this->moduleName, 'Config/sanctum.php'), $this->moduleNameLower
+            module_path($this->moduleName, 'Config/sanctum.php'), 'sanctum'
         );
     }
 }
