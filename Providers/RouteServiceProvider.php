@@ -39,17 +39,15 @@ class RouteServiceProvider extends ServiceProvider
     }
 
     /**
-     * Define the "web" routes for the application.
-     *
-     * These routes all receive session state, CSRF protection, etc.
+     * Define the "auth" routes for the application.
      *
      * @return void
      */
-    protected function mapWebRoutes()
+    protected function mapAuthRoutes()
     {
-        Route::middleware('web')
+        Route::middleware('auth')
             ->namespace($this->moduleNamespace)
-            ->group(module_path('Auth', '/Routes/web.php'));
+            ->group(module_path('Auth', '/Routes/auth.php'));
     }
 
     /**
